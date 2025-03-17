@@ -1,0 +1,30 @@
+# Blender MTL File: 'SurgeryChair.blend'
+# Material Count: 2
+
+newmtl Construction
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump SurgeryChair_Construction_Normal.png
+map_Kd SurgeryChair_Construction_BaseColor.png
+map_Ns SurgeryChair_Construction_Roughness.png
+refl SurgeryChair_Construction_Metallic.png
+
+newmtl Pillow
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump SurgeryChair_Matres_Normal.png
+map_Kd SurgeryChair_Matres_BaseColor.png
+map_Ns SurgeryChair_Matres_Roughness.png
+refl SurgeryChair_Matres_Metallic.png
