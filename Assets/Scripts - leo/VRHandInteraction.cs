@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem; 
 
 public class VRHandInteraction : MonoBehaviour
 {
     private GrabLeg grabbedLeg;
+    public InputActionProperty grabAction; 
 
     void OnTriggerEnter(Collider other)
     {
@@ -26,14 +28,12 @@ public class VRHandInteraction : MonoBehaviour
     {
         if (grabbedLeg != null)
         {
-       
-            if (Input.GetButtonDown("Grab"))
+            if (grabAction.action.WasPressedThisFrame()) // Usa o novo Input System
             {
                 grabbedLeg.Grab(transform);
             }
 
-
-            if (Input.GetButtonUp("Grab"))
+            if (grabAction.action.WasReleasedThisFrame())
             {
                 grabbedLeg.Release();
             }
