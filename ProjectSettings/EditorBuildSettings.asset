@@ -4,7 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FireScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cb15c648f4d92524cb7d024d44a04b52, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 253a2894de8821244b9806810e86901f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b2b9bcb378ab7d74f9a7e8ff447a82af, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 0c674d37bf6369546a1771208f71ef95, type: 2}
