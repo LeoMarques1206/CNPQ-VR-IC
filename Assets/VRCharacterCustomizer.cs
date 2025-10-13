@@ -5,8 +5,8 @@ using TMPro;
 public class VRCharacterCustomizer : MonoBehaviour
 {
     [Header("Referências do Modelo")]
-    [Tooltip("Renderer da pele do personagem (SkinnedMeshRenderer do corpo).")]
-    public SkinnedMeshRenderer bodyRenderer;
+    [Tooltip("Renderer da pele do personagem (MeshRenderer do corpo).")]
+    public MeshRenderer bodyRenderer;
 
     [Header("UI (TextMeshPro)")]
     public TMP_Text skinLabel;
@@ -24,10 +24,10 @@ public class VRCharacterCustomizer : MonoBehaviour
 
     [Header("Opções")]
     [Tooltip("Materiais de pele que casam com 'skin.display'.")]
-    public Material[] skinMaterials;          // tamanho 3
-    public OptionGroup skin;                  // skin.display tamanho 3
-    public OptionGroup healthProfile;         // ex.: Padrão, Hipertensa, Gestante
-    public OptionGroup behavior;              // ex.: Calma, Ansiosa, Agressiva
+    public Material[] skinMaterials;          
+    public OptionGroup skin;                  
+    public OptionGroup healthProfile;        
+    public OptionGroup behavior;              
 
     [Header("Eventos (opcional)")]
     public UnityEvent<int, string> onSkinChanged;
@@ -61,12 +61,18 @@ public class VRCharacterCustomizer : MonoBehaviour
     void ApplySkin()
     {
         if (skinLabel) skinLabel.text = skin.display[Mathf.Clamp(skin.index, 0, skin.display.Length - 1)];
+
         if (bodyRenderer && skinMaterials != null && skinMaterials.Length > 0)
         {
             int i = Mathf.Clamp(skin.index, 0, skinMaterials.Length - 1);
             var mats = bodyRenderer.sharedMaterials;
-            // assume que o 1º material é a pele; ajuste o slot conforme seu mesh
-            if (mats.Length > 0) { mats[0] = skinMaterials[i]; bodyRenderer.sharedMaterials = mats; }
+
+            // assume que o 1º material é a pele; ajustar o slot conforme o mesh
+            if (mats.Length > 0)
+            {
+                mats[0] = skinMaterials[i];
+                bodyRenderer.sharedMaterials = mats;
+            }
         }
         onSkinChanged?.Invoke(skin.index, skin.display[skin.index]);
     }
