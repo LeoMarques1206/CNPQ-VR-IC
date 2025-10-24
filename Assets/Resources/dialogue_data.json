@@ -1,0 +1,28 @@
+{
+  "behaviors": [
+    {
+      "type": "Calma",
+      "lines": [
+        { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos começar o exame." },
+        { "speaker": "Paciente", "text": "Sim, doutora. Estou tranquila." },
+        { "speaker": "Doutora", "text": "Perfeito, vamos iniciar o procedimento." }
+      ]
+    },
+    {
+      "type": "Ansiosa",
+      "lines": [
+        { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos começar o exame." },
+        { "speaker": "Paciente", "text": "Eu estou um pouco nervosa, é a primeira vez..." },
+        { "speaker": "Doutora", "text": "Fique calma, vou te explicar cada passo, tudo bem?" }
+      ]
+    },
+    {
+      "type": "Agressiva",
+      "lines": [
+        { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos começar o exame." },
+        { "speaker": "Paciente", "text": "Vamos logo com isso, eu não tenho tempo pra isso." },
+        { "speaker": "Doutora", "text": "Tudo bem, vou ser breve, mas preciso que colabore." }
+      ]
+    }
+  ]
+}
