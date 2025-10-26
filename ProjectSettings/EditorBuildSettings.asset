@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cutscene.unity
     guid: 0874a6c58a0bf3d4f8218fb14d348380
+  - enabled: 1
+    path: Assets/Scenes/ARscene.unity
+    guid: 84ad57eaf68c5f947af3e23c491e7799
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cb15c648f4d92524cb7d024d44a04b52, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: bfd88a6419bf4964f868eec94139761e, type: 2}
