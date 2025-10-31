@@ -147,9 +147,6 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 11400000, guid: 3d26226c0fb569b49a48a55cb75c71b8, type: 2}
   - {fileID: 11400000, guid: 253a2894de8821244b9806810e86901f, type: 2}
-  - {fileID: -8093241684305724719, guid: b2b9bcb378ab7d74f9a7e8ff447a82af, type: 2}
-  - {fileID: -1895069601736274368, guid: 0c674d37bf6369546a1771208f71ef95, type: 2}
-  - {fileID: 11400000, guid: 563712378d60c1a48bc32a3f57caaead, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -770,7 +767,10 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: USE_INPUT_SYSTEM_POSE_CONTROL
+    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL
+    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
