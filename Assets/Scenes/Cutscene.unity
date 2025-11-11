@@ -1628,6 +1628,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131199989}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &171080164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171080166}
+  - component: {fileID: 171080165}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &171080165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171080164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f99359740b571a45a84d2f89600f6e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManagerJSON
+  dialogueText: {fileID: 1279282870}
+  characterImage: {fileID: 1786398623}
+  doctorRenderTexture: {fileID: 8400000, guid: aa2e04b9aff31b74182bd3b73559acec, type: 2}
+  patientRenderTexture: {fileID: 8400000, guid: 9d15a515c1eec964b8b05fc9b4249a49, type: 2}
+  lineDelay: 2.5
+  jsonFileName: dialogue_data
+--- !u!4 &171080166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171080164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.00896, y: 2.03441, z: -3.52229}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180900090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3853,9 +3903,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f99359740b571a45a84d2f89600f6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speakerText: {fileID: 1109676602}
   dialogueText: {fileID: 1279282870}
-  selectedBehavior: Calma
+  characterImage: {fileID: 0}
+  doctorRenderTexture: {fileID: 0}
+  patientRenderTexture: {fileID: 0}
   lineDelay: 2.5
   jsonFileName: dialogue_data
 --- !u!1 &416330301
@@ -7447,7 +7498,7 @@ GameObject:
   - component: {fileID: 961289469}
   - component: {fileID: 961289467}
   m_Layer: 0
-  m_Name: CameraUterus
+  m_Name: CameraGirl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16213,7 +16264,7 @@ RectTransform:
   m_GameObject: {fileID: 1786398621}
   m_LocalRotation: {x: -0, y: 0.000000029802315, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 0.053183082, y: 0.034917656, z: 0.034917656}
+  m_LocalScale: {x: 0.07018571, y: 0.034917656, z: 0.034917656}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1109676601}
@@ -19315,3 +19366,4 @@ SceneRoots:
   - {fileID: 1163864734}
   - {fileID: 257759795}
   - {fileID: 1166369991}
+  - {fileID: 171080166}

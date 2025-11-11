@@ -14,6 +14,7 @@ public class VRCharacterCustomizer : MonoBehaviour
     public TMP_Text behaviorLabel;
     public TMP_Text ageLabel;
     public TMP_Text childrenLabel;
+    public TMP_Text problemLabel; 
 
     [System.Serializable]
     public class OptionGroup
@@ -32,6 +33,7 @@ public class VRCharacterCustomizer : MonoBehaviour
     public OptionGroup behavior;
     public OptionGroup ageRange;
     public OptionGroup children;
+    public OptionGroup problem;
 
     [Header("Eventos (opcional)")]
     public UnityEvent<int, string> onSkinChanged;
@@ -39,7 +41,8 @@ public class VRCharacterCustomizer : MonoBehaviour
     public UnityEvent<int, string> onBehaviorChanged;
     public UnityEvent<int, string> onAgeChanged;
     public UnityEvent<int, string> onChildrenChanged;
-    public UnityEvent onSaveCompleted; // opcional: evento disparado após salvar
+    public UnityEvent<int, string> onProblemChanged; 
+    public UnityEvent onSaveCompleted;
 
     void Start()
     {
@@ -61,6 +64,9 @@ public class VRCharacterCustomizer : MonoBehaviour
 
     public void NextChildren() { Step(ref children.index, children.display.Length, +1); ApplyChildren(); }
     public void PrevChildren() { Step(ref children.index, children.display.Length, -1); ApplyChildren(); }
+
+    public void NextProblem()  { Step(ref problem.index, problem.display.Length, +1); ApplyProblem(); }
+    public void PrevProblem()  { Step(ref problem.index, problem.display.Length, -1); ApplyProblem(); }
     #endregion
 
     void Step(ref int index, int length, int dir)
@@ -111,6 +117,12 @@ public class VRCharacterCustomizer : MonoBehaviour
         onChildrenChanged?.Invoke(children.index, children.display[children.index]);
     }
 
+    void ApplyProblem()
+    {
+        if (problemLabel) problemLabel.text = problem.display[Mathf.Clamp(problem.index, 0, problem.display.Length - 1)];
+        onProblemChanged?.Invoke(problem.index, problem.display[problem.index]);
+    }
+
     public void RefreshAll()
     {
         ApplySkin();
@@ -118,9 +130,9 @@ public class VRCharacterCustomizer : MonoBehaviour
         ApplyBehavior();
         ApplyAge();
         ApplyChildren();
+        ApplyProblem(); 
     }
 
-    // ✅ BOTÃO SALVAR
     public void SaveSelection()
     {
         PlayerPrefs.SetInt("SkinIndex", skin.index);
@@ -128,13 +140,14 @@ public class VRCharacterCustomizer : MonoBehaviour
         PlayerPrefs.SetInt("BehaviorIndex", behavior.index);
         PlayerPrefs.SetInt("AgeIndex", ageRange.index);
         PlayerPrefs.SetInt("ChildrenIndex", children.index);
+        PlayerPrefs.SetInt("ProblemIndex", problem.index); 
         PlayerPrefs.Save();
 
         Debug.Log("⚙️ Preferências de personagem salvas!");
         onSaveCompleted?.Invoke();
     }
 
-    // Helpers para pegar o estado atual
+    // Helpers
     public int GetSkinIndex() => skin.index;
     public string GetSkinName() => skin.display[skin.index];
     public int GetHealthIndex() => healthProfile.index;
@@ -145,4 +158,8 @@ public class VRCharacterCustomizer : MonoBehaviour
     public string GetAgeName() => ageRange.display[ageRange.index];
     public int GetChildrenIndex() => children.index;
     public string GetChildrenName() => children.display[children.index];
+
+
+    public int GetProblemIndex() => problem.index;
+    public string GetProblemName() => problem.display[problem.index];
 }

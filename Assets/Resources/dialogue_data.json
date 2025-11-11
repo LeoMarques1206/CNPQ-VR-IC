@@ -1,27 +1,119 @@
 {
-  "behaviors": [
+  "conversas": [
     {
-      "type": "Calma",
-      "lines": [
-        { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos começar o exame." },
-        { "speaker": "Paciente", "text": "Sim, doutora. Estou tranquila." },
-        { "speaker": "Doutora", "text": "Perfeito, vamos iniciar o procedimento." }
+      "problema": "Incontinência Urinária",
+      "tipos": [
+        {
+          "tipo": "Calma",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos conversar um pouco sobre o seu quadro de incontinência urinária." },
+            { "speaker": "Paciente", "text": "Claro, doutora. Já me acostumei um pouco com os episódios, mas quero melhorar." },
+            { "speaker": "Doutora", "text": "Perfeito, vamos investigar as causas e planejar o melhor tratamento para você." }
+          ]
+        },
+        {
+          "tipo": "Ansiosa",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos conversar sobre suas perdas urinárias, tudo bem?" },
+            { "speaker": "Paciente", "text": "Eu fico muito nervosa, doutora... tenho medo de não conseguir controlar e isso acontecer de novo." },
+            { "speaker": "Doutora", "text": "Fique tranquila, é mais comum do que parece. Vamos encontrar o melhor tratamento, passo a passo." }
+          ]
+        },
+        {
+          "tipo": "Agressiva",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Gostaria de conversar sobre sua incontinência urinária." },
+            { "speaker": "Paciente", "text": "Eu já sei o que é, isso não tem jeito mesmo. Já cansei de médico." },
+            { "speaker": "Doutora", "text": "Entendo sua frustração, mas há novos tratamentos que podem ajudar. Podemos conversar sobre eles?" }
+          ]
+        }
       ]
     },
     {
-      "type": "Ansiosa",
-      "lines": [
-        { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos começar o exame." },
-        { "speaker": "Paciente", "text": "Eu estou um pouco nervosa, é a primeira vez..." },
-        { "speaker": "Doutora", "text": "Fique calma, vou te explicar cada passo, tudo bem?" }
+      "problema": "Vaginismo",
+      "tipos": [
+        {
+          "tipo": "Calma",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Vamos conversar um pouco sobre o que você está sentindo." },
+            { "speaker": "Paciente", "text": "Sim, doutora. Tenho dificuldade na relação, mas quero entender melhor o que acontece." },
+            { "speaker": "Doutora", "text": "Você está no caminho certo. O vaginismo é tratável e vamos fazer isso com calma e respeito." }
+          ]
+        },
+        {
+          "tipo": "Ansiosa",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Pode me contar como têm sido as tentativas de relação?" },
+            { "speaker": "Paciente", "text": "Eu fico muito tensa, doutora, é como se meu corpo travasse... tenho medo de sentir dor." },
+            { "speaker": "Doutora", "text": "Compreendo. Vamos trabalhar isso juntas, sem pressa. O tratamento é delicado, mas funciona." }
+          ]
+        },
+        {
+          "tipo": "Agressiva",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Gostaria de entender melhor o que você sente durante a relação." },
+            { "speaker": "Paciente", "text": "Não quero falar sobre isso, já ouvi mil vezes a mesma coisa." },
+            { "speaker": "Doutora", "text": "Tudo bem, respeito seu tempo. Podemos conversar quando você se sentir mais confortável." }
+          ]
+        }
       ]
     },
     {
-      "type": "Agressiva",
-      "lines": [
-        { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos começar o exame." },
-        { "speaker": "Paciente", "text": "Vamos logo com isso, eu não tenho tempo pra isso." },
-        { "speaker": "Doutora", "text": "Tudo bem, vou ser breve, mas preciso que colabore." }
+      "problema": "Dor Pélvica Crônica Feminina",
+      "tipos": [
+        {
+          "tipo": "Calma",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Gostaria de entender melhor suas dores pélvicas." },
+            { "speaker": "Paciente", "text": "Sim, doutora. Elas são constantes, mas já estou acostumada." },
+            { "speaker": "Doutora", "text": "Certo, vamos investigar a origem da dor e buscar alívio para você." }
+          ]
+        },
+        {
+          "tipo": "Ansiosa",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos conversar sobre a dor que você sente." },
+            { "speaker": "Paciente", "text": "Eu tenho medo de ser algo grave, sinto essa dor há tanto tempo..." },
+            { "speaker": "Doutora", "text": "Entendo sua preocupação. Vamos fazer os exames necessários e tratar com cuidado." }
+          ]
+        },
+        {
+          "tipo": "Agressiva",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Pode me contar sobre a dor pélvica que sente?" },
+            { "speaker": "Paciente", "text": "Já cansei de contar, ninguém resolve nada. É sempre a mesma coisa!" },
+            { "speaker": "Doutora", "text": "Compreendo sua frustração. Vamos revisar o tratamento com calma e ver novas opções." }
+          ]
+        }
+      ]
+    },
+    {
+      "problema": "Dispareunia",
+      "tipos": [
+        {
+          "tipo": "Calma",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Vamos conversar sobre o desconforto durante as relações." },
+            { "speaker": "Paciente", "text": "Sim, doutora. Sinto dor, mas quero entender o porquê." },
+            { "speaker": "Doutora", "text": "Perfeito. Vamos investigar as causas e tratar para que você se sinta bem novamente." }
+          ]
+        },
+        {
+          "tipo": "Ansiosa",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Pode me contar como tem sido suas relações?" },
+            { "speaker": "Paciente", "text": "Eu fico com medo, doutora... a dor é sempre muito forte." },
+            { "speaker": "Doutora", "text": "Compreendo. Vamos descobrir a causa juntos e tratar de forma que não cause mais dor." }
+          ]
+        },
+        {
+          "tipo": "Agressiva",
+          "linhas": [
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Gostaria de entender melhor sobre a dor que você sente nas relações." },
+            { "speaker": "Paciente", "text": "Pra quê? Todo médico fala e não resolve nada!" },
+            { "speaker": "Doutora", "text": "Entendo sua revolta, mas quero realmente te ajudar. Vamos tentar uma abordagem diferente." }
+          ]
+        }
       ]
     }
   ]
