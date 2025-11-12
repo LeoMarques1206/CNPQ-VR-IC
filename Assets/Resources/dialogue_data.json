@@ -6,112 +6,151 @@
         {
           "tipo": "Calma",
           "linhas": [
-            { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos conversar um pouco sobre o seu quadro de incontinência urinária." },
-            { "speaker": "Paciente", "text": "Claro, doutora. Já me acostumei um pouco com os episódios, mas quero melhorar." },
-            { "speaker": "Doutora", "text": "Perfeito, vamos investigar as causas e planejar o melhor tratamento para você." }
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Notei que mencionou episódios de perda urinária. Poderia me contar quando eles começaram?" },
+            { "speaker": "Paciente", "text": "Sim, doutora. Faz um tempo que isso acontece. Às vezes escapa um pouco de urina quando espirro ou rio." },
+            { "speaker": "Doutora", "text": "Entendo. E ocorre com frequência ou apenas em situações específicas, como esforço físico ou tosse?" },
+            { "speaker": "Paciente", "text": "Na maior parte das vezes é quando faço algum esforço. Eu até tento segurar, mas não consigo completamente." },
+            { "speaker": "Doutora", "text": "Obrigada pelas informações. Isso parece indicar um enfraquecimento do assoalho pélvico, que é relativamente comum em mulheres." },
+            { "speaker": "Doutora", "text": "Com base no seu relato, suspeito de uma incontinência urinária de esforço leve a moderada, relacionada à frouxidão muscular pélvica. Vamos confirmar com exame físico e iniciar fisioterapia específica." }
           ]
         },
         {
           "tipo": "Ansiosa",
           "linhas": [
-            { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos conversar sobre suas perdas urinárias, tudo bem?" },
-            { "speaker": "Paciente", "text": "Eu fico muito nervosa, doutora... tenho medo de não conseguir controlar e isso acontecer de novo." },
-            { "speaker": "Doutora", "text": "Fique tranquila, é mais comum do que parece. Vamos encontrar o melhor tratamento, passo a passo." }
+            { "speaker": "Doutora", "text": "Olá! Vi que relatou episódios de perda urinária. Você poderia me contar um pouco sobre como isso tem afetado seu dia a dia?" },
+            { "speaker": "Paciente", "text": "Afeta bastante, doutora... tenho medo de sair de casa. Às vezes sinto vontade repentina de urinar e não consigo chegar ao banheiro a tempo." },
+            { "speaker": "Doutora", "text": "Isso deve gerar bastante ansiedade mesmo. Essa vontade vem acompanhada de dor ou sensação de urgência?" },
+            { "speaker": "Paciente", "text": "Sim, parece que não consigo controlar. E fico muito envergonhada quando acontece." },
+            { "speaker": "Doutora", "text": "Você está fazendo certo em procurar ajuda. Isso é mais comum do que parece e existem formas de controle." },
+            { "speaker": "Doutora", "text": "Os sintomas sugerem uma incontinência mista — esforço e urgência combinados. Vamos investigar a função vesical e iniciar reeducação miccional e exercícios de Kegel supervisionados." }
           ]
         },
         {
           "tipo": "Agressiva",
           "linhas": [
-            { "speaker": "Doutora", "text": "Olá, tudo bem? Gostaria de conversar sobre sua incontinência urinária." },
-            { "speaker": "Paciente", "text": "Eu já sei o que é, isso não tem jeito mesmo. Já cansei de médico." },
-            { "speaker": "Doutora", "text": "Entendo sua frustração, mas há novos tratamentos que podem ajudar. Podemos conversar sobre eles?" }
+            { "speaker": "Doutora", "text": "Bom dia. Entendo que tem apresentado perdas urinárias. Pode me contar como tem sido?" },
+            { "speaker": "Paciente", "text": "Não adianta, doutora. Já tentei remédio, fisioterapia... nada resolve. Já aceitei que vou viver assim." },
+            { "speaker": "Doutora", "text": "Imagino que isso gere frustração. Mas pode haver novas abordagens que ainda não experimentou." },
+            { "speaker": "Paciente", "text": "Duvido. Quando sinto vontade, já é tarde demais. Isso acontece o dia inteiro." },
+            { "speaker": "Doutora", "text": "Entendo. Isso indica uma possível hiperatividade do detrusor, o músculo da bexiga, que provoca contrações involuntárias." },
+            { "speaker": "Doutora", "text": "Suspeito de incontinência urinária de urgência com possível disfunção detrusora. Podemos confirmar com estudo urodinâmico e avaliar medicações antimuscarínicas." }
           ]
         }
       ]
     },
+
     {
       "problema": "Vaginismo",
       "tipos": [
         {
           "tipo": "Calma",
           "linhas": [
-            { "speaker": "Doutora", "text": "Oi, tudo bem? Vamos conversar um pouco sobre o que você está sentindo." },
-            { "speaker": "Paciente", "text": "Sim, doutora. Tenho dificuldade na relação, mas quero entender melhor o que acontece." },
-            { "speaker": "Doutora", "text": "Você está no caminho certo. O vaginismo é tratável e vamos fazer isso com calma e respeito." }
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Gostaria que me contasse como tem sido sua experiência nas relações." },
+            { "speaker": "Paciente", "text": "Doutora, sinto como se meu corpo travasse quando meu parceiro tenta a penetração. Não é por falta de vontade, mas sinto uma tensão forte." },
+            { "speaker": "Doutora", "text": "Você sente dor ou apenas contração involuntária?" },
+            { "speaker": "Paciente", "text": "Mais uma contração, parece que o corpo recusa. E fico envergonhada, mesmo com confiança no parceiro." },
+            { "speaker": "Doutora", "text": "Você está sendo muito corajosa em buscar ajuda. Isso é mais comum do que imagina." },
+            { "speaker": "Doutora", "text": "Pelos sintomas, suspeito de vaginismo primário, causado por espasmo involuntário da musculatura pélvica. O tratamento envolve fisioterapia e terapia comportamental gradual." }
           ]
         },
         {
           "tipo": "Ansiosa",
           "linhas": [
-            { "speaker": "Doutora", "text": "Oi, tudo bem? Pode me contar como têm sido as tentativas de relação?" },
-            { "speaker": "Paciente", "text": "Eu fico muito tensa, doutora, é como se meu corpo travasse... tenho medo de sentir dor." },
-            { "speaker": "Doutora", "text": "Compreendo. Vamos trabalhar isso juntas, sem pressa. O tratamento é delicado, mas funciona." }
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Pode me contar o que acontece durante as tentativas de relação?" },
+            { "speaker": "Paciente", "text": "Eu começo a suar, fico tensa e sinto como se não conseguisse controlar meu corpo. A penetração nunca acontece porque a dor é forte." },
+            { "speaker": "Doutora", "text": "Você se lembra se houve algum episódio anterior de dor ou desconforto?" },
+            { "speaker": "Paciente", "text": "Sim, uma vez doeu muito e desde então tenho medo. Parece que meu corpo já espera a dor." },
+            { "speaker": "Doutora", "text": "Isso é compreensível. Essa antecipação da dor acaba reforçando o espasmo muscular." },
+            { "speaker": "Doutora", "text": "Pelo padrão relatado, é provável um vaginismo secundário associado à dor antecipatória. Podemos tratar com dessensibilização progressiva e fisioterapia pélvica." }
           ]
         },
         {
           "tipo": "Agressiva",
           "linhas": [
-            { "speaker": "Doutora", "text": "Oi, tudo bem? Gostaria de entender melhor o que você sente durante a relação." },
-            { "speaker": "Paciente", "text": "Não quero falar sobre isso, já ouvi mil vezes a mesma coisa." },
-            { "speaker": "Doutora", "text": "Tudo bem, respeito seu tempo. Podemos conversar quando você se sentir mais confortável." }
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Pode me contar o que sente durante as tentativas de relação?" },
+            { "speaker": "Paciente", "text": "Pra quê? Já sei o que vão dizer. Que é psicológico, que tenho que relaxar." },
+            { "speaker": "Doutora", "text": "Compreendo seu cansaço. Mas às vezes, entender o que o corpo expressa ajuda a aliviar o sintoma." },
+            { "speaker": "Paciente", "text": "Não sei. Já evito qualquer tentativa, é frustrante." },
+            { "speaker": "Doutora", "text": "Tudo bem. Vamos respeitar seu ritmo. O importante é compreender a origem desse bloqueio corporal." },
+            { "speaker": "Doutora", "text": "Seu relato sugere um vaginismo com componente emocional acentuado. Uma abordagem multidisciplinar com fisioterapia e terapia sexual pode ajudar bastante." }
           ]
         }
       ]
     },
+
     {
       "problema": "Dor Pélvica Crônica Feminina",
       "tipos": [
         {
           "tipo": "Calma",
           "linhas": [
-            { "speaker": "Doutora", "text": "Olá, tudo bem? Gostaria de entender melhor suas dores pélvicas." },
-            { "speaker": "Paciente", "text": "Sim, doutora. Elas são constantes, mas já estou acostumada." },
-            { "speaker": "Doutora", "text": "Certo, vamos investigar a origem da dor e buscar alívio para você." }
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Me conte um pouco sobre as dores que tem sentido." },
+            { "speaker": "Paciente", "text": "Elas são constantes, doutora. Uma sensação de peso na parte baixa do abdômen, às vezes piora no fim do dia." },
+            { "speaker": "Doutora", "text": "Essa dor está relacionada ao ciclo menstrual ou ocorre independente dele?" },
+            { "speaker": "Paciente", "text": "Já percebi que piora antes da menstruação, mas agora tem sido quase todo dia." },
+            { "speaker": "Doutora", "text": "Entendo. Esse tipo de dor contínua pode ter múltiplas causas." },
+            { "speaker": "Doutora", "text": "Pelo seu relato, há indícios de dor pélvica crônica multifatorial, possivelmente miofascial. Vamos avaliar o assoalho pélvico e investigar causas endometriais ou musculares." }
           ]
         },
         {
           "tipo": "Ansiosa",
           "linhas": [
-            { "speaker": "Doutora", "text": "Olá, tudo bem? Vamos conversar sobre a dor que você sente." },
-            { "speaker": "Paciente", "text": "Eu tenho medo de ser algo grave, sinto essa dor há tanto tempo..." },
-            { "speaker": "Doutora", "text": "Entendo sua preocupação. Vamos fazer os exames necessários e tratar com cuidado." }
+            { "speaker": "Doutora", "text": "Oi! Vi que tem sentido dores na região pélvica. Pode me contar há quanto tempo?" },
+            { "speaker": "Paciente", "text": "Há mais de seis meses, doutora. Às vezes dói tanto que não consigo trabalhar direito." },
+            { "speaker": "Doutora", "text": "Sinto muito. Essa dor é contínua ou vem em crises?" },
+            { "speaker": "Paciente", "text": "Tem dias piores, mas nunca passa totalmente. Já fiz vários exames e nunca acham nada." },
+            { "speaker": "Doutora", "text": "É compreensível sua frustração. Muitas vezes, a dor pélvica crônica envolve fatores musculares e emocionais." },
+            { "speaker": "Doutora", "text": "Pelo tempo e padrão, suspeito de uma síndrome de dor pélvica crônica. Vamos investigar com avaliação física detalhada e tratamento interdisciplinar." }
           ]
         },
         {
           "tipo": "Agressiva",
           "linhas": [
-            { "speaker": "Doutora", "text": "Olá, tudo bem? Pode me contar sobre a dor pélvica que sente?" },
-            { "speaker": "Paciente", "text": "Já cansei de contar, ninguém resolve nada. É sempre a mesma coisa!" },
-            { "speaker": "Doutora", "text": "Compreendo sua frustração. Vamos revisar o tratamento com calma e ver novas opções." }
+            { "speaker": "Doutora", "text": "Olá, tudo bem? Pode me contar um pouco sobre as dores?" },
+            { "speaker": "Paciente", "text": "Dói o tempo todo! Já passei por vários médicos e ninguém resolve. É sempre a mesma conversa." },
+            { "speaker": "Doutora", "text": "Imagino o quanto isso é difícil. Você sente dor durante o dia todo ou em momentos específicos?" },
+            { "speaker": "Paciente", "text": "Direto, parece uma queimação. Às vezes até nas relações." },
+            { "speaker": "Doutora", "text": "Entendo. Isso indica uma provável hipersensibilidade do assoalho pélvico." },
+            { "speaker": "Doutora", "text": "Pelos sintomas, suspeito de dor pélvica crônica com hipertonias persistentes e componente neuropático. Vamos iniciar fisioterapia e manejo da dor." }
           ]
         }
       ]
     },
+
     {
       "problema": "Dispareunia",
       "tipos": [
         {
           "tipo": "Calma",
           "linhas": [
-            { "speaker": "Doutora", "text": "Oi, tudo bem? Vamos conversar sobre o desconforto durante as relações." },
-            { "speaker": "Paciente", "text": "Sim, doutora. Sinto dor, mas quero entender o porquê." },
-            { "speaker": "Doutora", "text": "Perfeito. Vamos investigar as causas e tratar para que você se sinta bem novamente." }
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Gostaria de conversar sobre o desconforto nas relações." },
+            { "speaker": "Paciente", "text": "Sinto dor logo na entrada, doutora. Às vezes melhora um pouco, mas volta depois." },
+            { "speaker": "Doutora", "text": "Entendo. A dor aparece sempre no mesmo ponto?" },
+            { "speaker": "Paciente", "text": "Sim, parece como se fosse uma ardência, principalmente quando estou mais seca." },
+            { "speaker": "Doutora", "text": "Esse tipo de dor superficial pode estar relacionado à lubrificação ou tensão muscular." },
+            { "speaker": "Doutora", "text": "Pelo relato, suspeito de dispareunia superficial com hipertonias vaginais leves. Vamos tratar com fisioterapia pélvica e orientação sobre lubrificantes adequados." }
           ]
         },
         {
           "tipo": "Ansiosa",
           "linhas": [
-            { "speaker": "Doutora", "text": "Oi, tudo bem? Pode me contar como tem sido suas relações?" },
-            { "speaker": "Paciente", "text": "Eu fico com medo, doutora... a dor é sempre muito forte." },
-            { "speaker": "Doutora", "text": "Compreendo. Vamos descobrir a causa juntos e tratar de forma que não cause mais dor." }
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Pode me contar como tem sido as relações?" },
+            { "speaker": "Paciente", "text": "Eu sinto muita dor, doutora. Às vezes parece que tá machucando por dentro. Fico tensa só de pensar em tentar de novo." },
+            { "speaker": "Doutora", "text": "Essa dor ocorre sempre na penetração ou também depois?" },
+            { "speaker": "Paciente", "text": "Durante e depois. Já chorei de dor várias vezes." },
+            { "speaker": "Doutora", "text": "Sinto muito por isso. Essa dor profunda é um sinal importante." },
+            { "speaker": "Doutora", "text": "Seu relato indica uma dispareunia profunda possivelmente ligada à tensão pélvica ou endometriose. Vamos avaliar o assoalho pélvico e considerar exames complementares." }
           ]
         },
         {
           "tipo": "Agressiva",
           "linhas": [
-            { "speaker": "Doutora", "text": "Oi, tudo bem? Gostaria de entender melhor sobre a dor que você sente nas relações." },
-            { "speaker": "Paciente", "text": "Pra quê? Todo médico fala e não resolve nada!" },
-            { "speaker": "Doutora", "text": "Entendo sua revolta, mas quero realmente te ajudar. Vamos tentar uma abordagem diferente." }
+            { "speaker": "Doutora", "text": "Oi, tudo bem? Pode me contar um pouco sobre o que sente nas relações?" },
+            { "speaker": "Paciente", "text": "Pra quê? Sempre falam que é psicológico, mas a dor é real. Dói mesmo!" },
+            { "speaker": "Doutora", "text": "Entendo completamente. Ninguém deveria sentir dor e ouvir que é 'coisa da cabeça'." },
+            { "speaker": "Paciente", "text": "Pois é, e nada ajuda. Nem pomada, nem remédio." },
+            { "speaker": "Doutora", "text": "Isso deve ser muito frustrante. Pode haver causas musculares ou nervosas envolvidas." },
+            { "speaker": "Doutora", "text": "Pelos sintomas, suspeito de dispareunia funcional com hipersensibilidade pélvica. O tratamento pode envolver fisioterapia e abordagem multidisciplinar." }
           ]
         }
       ]

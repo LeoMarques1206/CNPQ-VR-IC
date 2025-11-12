@@ -140,10 +140,18 @@ public class VRCharacterCustomizer : MonoBehaviour
         PlayerPrefs.SetInt("BehaviorIndex", behavior.index);
         PlayerPrefs.SetInt("AgeIndex", ageRange.index);
         PlayerPrefs.SetInt("ChildrenIndex", children.index);
-        PlayerPrefs.SetInt("ProblemIndex", problem.index); 
+        PlayerPrefs.SetInt("ProblemIndex", problem.index);
+
+        PlayerPrefs.SetString("SkinName", GetSkinName());
+        PlayerPrefs.SetString("HealthName", GetHealthName());
+        PlayerPrefs.SetString("BehaviorName", GetBehaviorName());
+        PlayerPrefs.SetString("AgeName", GetAgeName());
+        PlayerPrefs.SetString("ChildrenName", GetChildrenName());
+        PlayerPrefs.SetString("ProblemName", GetProblemName());
+
         PlayerPrefs.Save();
 
-        Debug.Log("⚙️ Preferências de personagem salvas!");
+        Debug.Log($"💾 Personagem salvo: Problem={GetProblemName()}, Behavior={GetBehaviorName()}");
         onSaveCompleted?.Invoke();
     }
 
