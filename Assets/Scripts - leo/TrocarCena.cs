@@ -11,20 +11,26 @@ public class TrocarCena : MonoBehaviour
     [Header("Botão que dispara a troca de cena")]
     public Button botao;
 
+    [Header("Botão para sair do jogo")]
+    public Button botaoSair;
+
     [Header("Tempo de atraso antes da troca (opcional)")]
     [Tooltip("Tempo em segundos antes de carregar a cena.")]
     public float atraso = 1f;
 
     void Start()
     {
+        // Configura o botão de troca de cena
         if (botao != null)
-        {
             botao.onClick.AddListener(CarregarCena);
-        }
         else
-        {
-            Debug.LogWarning("⚠️ Nenhum botão atribuído no script TrocarCena!");
-        }
+            Debug.LogWarning("⚠️ Nenhum botão atribuído para trocar de cena!");
+
+        // Configura o botão de sair
+        if (botaoSair != null)
+            botaoSair.onClick.AddListener(SairDoJogo);
+        else
+            Debug.LogWarning("⚠️ Nenhum botão atribuído para sair do jogo!");
     }
 
     public void CarregarCena()
@@ -35,7 +41,7 @@ public class TrocarCena : MonoBehaviour
             return;
         }
 
-        // 🔄 Aguarda o tempo de atraso antes de carregar a cena
+        // Aguarda o tempo de atraso antes de carregar
         Invoke(nameof(CarregarCenaDepoisInvoke), atraso);
     }
 
@@ -43,5 +49,18 @@ public class TrocarCena : MonoBehaviour
     {
         Debug.Log($"🎬 Carregando cena: {nomeCena}");
         SceneManager.LoadScene(nomeCena);
+    }
+
+    public void SairDoJogo()
+    {
+        Debug.Log("🚪 Saindo do jogo...");
+
+        // No editor, apenas para visualização
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // No build (PC/VR)
+        Application.Quit();
+#endif
     }
 }
