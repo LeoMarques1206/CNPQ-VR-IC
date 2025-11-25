@@ -25,7 +25,7 @@ public class DialogueManagerJSON : MonoBehaviour
     [Header("Transição de Cena")]
     public CanvasGroup fadeCanvas;     // CanvasGroup preto cobrindo a tela
     public float fadeDuration = 1.5f;  // Duração do fade
-    public string nextSceneName = "MainScene";
+    private string nextSceneName = "IntoScene";
 
     [Header("Configuração")]
     public string jsonFileName = "dialogue_data";
@@ -211,7 +211,7 @@ public class DialogueManagerJSON : MonoBehaviour
     IEnumerator FadeAndLoadScene()
     {
         yield return new WaitForSeconds(0.5f);
-
+        Debug.Log("Indo para cena: " +nextSceneName);
         if (fadeCanvas != null)
         {
             float t = 0f;
