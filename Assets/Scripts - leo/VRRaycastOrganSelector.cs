@@ -2,199 +2,203 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
-[RequireComponent(typeof(LineRenderer))]
 public class VRRaycastOrganSelector : MonoBehaviour
 {
-    [Header("Referências da Mão / Ray")]
+    [Header("Referências")]
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor rayInteractor;
     public Transform handTransform;
-    public float maxDistance = 10f;
-    public LayerMask organLayer;
+    public Transform cameraTransform;
 
-    [Header("UI de Informação (Painel FIXO em World Space)")]
+    [Header("UI de Informação (Painel FIXO)")]
     public GameObject infoPanel;
     public TMP_Text nameText;
     public TMP_Text descriptionText;
 
-    [Header("Laser")]
-    public LineRenderer laser;
-    public float laserWidth = 0.01f;
-    public float laserHitDistanceMin = 0.05f;
+    [Header("Mover / Rotacionar")]
+    public float moveSpeed = 8f;
+    public float rotationSpeed = 120f;
+    public float maxGrabDistance = 2f;
 
-    [Header("Comportamento")]
-    public bool showPanelOnlyOnHit = true;
-    public Camera mainCamera;
+    [Header("Tempo Máximo de Movimento")]
+    public float maxGrabTime = 1.2f;  
+    private float grabTimer = 0f;
 
-    // Estado interno
-    private OrganData currentOrgan = null;
+    private bool isGrabbing = false;
 
-    // Seleção e highlight
-    private Transform selectedTransform;
-    private Vector3 originalPosition;
-    private Quaternion originalRotation;
-
-    public float moveSpeed = 1f;
-    public float rotationSpeed = 50f;
-    public bool isGrabbing = false;
-    private OutlineHighlighter currentHighlight;
+    [Header("Input (Input System)")]
     public InputActionProperty rightGrip;
-    void Awake()
+    public InputActionProperty rightRotateAxis;
+    public InputActionProperty leftGripRotate;
+
+    private OrganData currentOrgan = null;
+    private Transform selectedTransform;
+    private OutlineHighlighter currentHighlight;
+
+    private class SavedTransform
     {
-        if (laser == null)
-        {
-            laser = GetComponent<LineRenderer>();
-            if (laser == null)
-                laser = gameObject.AddComponent<LineRenderer>();
-        }
-
-        laser.positionCount = 2;
-        laser.startWidth = laserWidth;
-        laser.endWidth = laserWidth;
-
-        if (infoPanel != null) infoPanel.SetActive(false);
-        if (mainCamera == null) mainCamera = Camera.main;
+        public Vector3 pos;
+        public Quaternion rot;
+        public Transform parent;
+        public bool hadRigidbody;
     }
+
+    private Dictionary<Transform, SavedTransform> saved = new Dictionary<Transform, SavedTransform>();
+
+
+    void OnEnable()
+    {
+        rightGrip.action?.Enable();
+        rightRotateAxis.action?.Enable();
+        leftGripRotate.action?.Enable();
+    }
+
+    void OnDisable()
+    {
+        rightGrip.action?.Disable();
+        rightRotateAxis.action?.Disable();
+        leftGripRotate.action?.Disable();
+    }
+
 
     void Update()
     {
-        if (handTransform == null) return;
+        if (rayInteractor == null) return;
 
-        Ray ray = new Ray(handTransform.position, handTransform.forward);
-        RaycastHit hit;
-        bool didHit = Physics.Raycast(ray, out hit, maxDistance, organLayer);
-
-        // Laser
-        Vector3 laserEnd = handTransform.position + handTransform.forward * maxDistance;
-        if (didHit) laserEnd = hit.point;
-
-        laser.SetPosition(0, handTransform.position);
-        Vector3 toEnd = laserEnd - handTransform.position;
-        if (toEnd.magnitude < laserHitDistanceMin)
-            laserEnd = handTransform.position + handTransform.forward * laserHitDistanceMin;
-        laser.SetPosition(1, laserEnd);
-
-        // ------------------------------------------
-        // Seleção do órgão
-        // ------------------------------------------
-        if (didHit)
+        // ───────────────────────────────────────────────
+        // RAYCAST XR RAY INTERACTOR
+        if (rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
         {
             OrganData od = hit.collider.GetComponentInParent<OrganData>();
 
-            if (od != null)
+            if (od != null && od != currentOrgan)
             {
-                if (currentOrgan != od)
+                if (currentHighlight != null)
+                    currentHighlight.DisableOutline();
+
+                currentOrgan = od;
+
+                currentHighlight = od.GetComponent<OutlineHighlighter>();
+                if (currentHighlight != null)
+                    currentHighlight.EnableOutline();
+
+                selectedTransform = od.transform;
+
+                if (!saved.ContainsKey(selectedTransform))
                 {
-                    currentOrgan = od;
+                    SavedTransform s = new SavedTransform();
+                    s.pos = selectedTransform.position;
+                    s.rot = selectedTransform.rotation;
+                    s.parent = selectedTransform.parent;
+                    s.hadRigidbody = selectedTransform.GetComponent<Rigidbody>() != null;
 
-                    ReleaseObject();
-
-                    // Remove highlight antigo
-                    if (currentHighlight != null)
-                        currentHighlight.DisableOutline();
-
-                    // Novo highlight
-                    currentHighlight = od.GetComponent<OutlineHighlighter>();
-                    if (currentHighlight != null)
-                        currentHighlight.EnableOutline();
-
-                    // Salvar transform e mostrar info
-                    selectedTransform = od.transform;
-                    SaveOriginalTransforms();
-                    ShowOrganInfo(od);
+                    saved[selectedTransform] = s;
                 }
+
+                ShowOrganInfo(od);
             }
-            else
-            {
-                ClearSelection();
-            }
-        }
-        else
-        {
-            ClearSelection();
         }
 
-        // -------------------------------------------
-        // Controle de mover e girar objeto
-        // -------------------------------------------
+
+        // ───────────────────────────────────────────────
+        // INPUT (PEGAR / SOLTAR)
+        if (rightGrip.action.WasPressedThisFrame())
+            StartGrab();
+
+        if (rightGrip.action.WasReleasedThisFrame())
+            ReleaseObject();
+
+
+        // ───────────────────────────────────────────────
+        // MOVIMENTO + ROTAÇÃO ENQUANTO SEGURA
         if (isGrabbing && selectedTransform != null)
         {
-            selectedTransform.position = Vector3.Lerp(
-                selectedTransform.position,
-                handTransform.position + handTransform.forward * 0.25f,
-                Time.deltaTime * moveSpeed
-            );
+            // Atualiza timer
+            grabTimer += Time.deltaTime;
 
-            selectedTransform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-        }
+            bool canStillMove = grabTimer < maxGrabTime;
 
-        // Controles G (placeholder VR)
-        if (Input.GetKeyDown(KeyCode.G)) StartGrab();
-        if (Input.GetKeyUp(KeyCode.G)) ReleaseObject();
+            if (canStillMove)
+            {
+                // Movimento
+                Vector3 desiredPos = handTransform.position + handTransform.forward * 0.25f;
 
-        if (rightGrip.action.WasPressedThisFrame())
-        {
-            StartGrab();  
+                float distFromCamera = Vector3.Distance(desiredPos, cameraTransform.position);
+
+                if (distFromCamera > maxGrabDistance)
+                {
+                    desiredPos =
+                        cameraTransform.position +
+                        (desiredPos - cameraTransform.position).normalized * maxGrabDistance;
+                }
+
+                selectedTransform.position = Vector3.Lerp(
+                    selectedTransform.position,
+                    desiredPos,
+                    Time.deltaTime * moveSpeed
+                );
+            }
+
+            // ROTAÇÃO (não tem limite de tempo)
+            if (leftGripRotate.action.IsPressed())
+            {
+                selectedTransform.Rotate(
+                    Vector3.up,
+                    rotationSpeed * Time.deltaTime,
+                    Space.World
+                );
+            }
         }
-          
-        if (rightGrip.action.WasReleasedThisFrame())
-        {
-            ReleaseObject();
-        }
-            
     }
 
-    // ---------------------------------------------------------------
-    // Controle de pegar/soltar
-    // ---------------------------------------------------------------
+
     void StartGrab()
     {
         if (selectedTransform == null) return;
+
         isGrabbing = true;
+
+        grabTimer = 0f;  // ← reset do tempo ao pegar
+
+        Rigidbody rb = selectedTransform.GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = true;
+
+        selectedTransform.SetParent(null);
     }
 
-    void SaveOriginalTransforms()
-    {
-        if (selectedTransform == null) return;
-
-        originalPosition = selectedTransform.position;
-        originalRotation = selectedTransform.rotation;
-    }
 
     void ReleaseObject()
     {
         if (selectedTransform == null) return;
 
         isGrabbing = false;
-        selectedTransform.position = originalPosition;
-        selectedTransform.rotation = originalRotation;
-    }
 
-    // ---------------------------------------------------------------
-    // Painel FIXO
-    // ---------------------------------------------------------------
-    void ShowOrganInfo(OrganData od)
-    {
-        if (infoPanel == null) return;
+        if (saved.TryGetValue(selectedTransform, out SavedTransform s))
+        {
+            selectedTransform.position = s.pos;
+            selectedTransform.rotation = s.rot;
+            selectedTransform.SetParent(s.parent);
 
-        if (showPanelOnlyOnHit)
-            infoPanel.SetActive(true);
-
-        if (nameText != null) nameText.text = od.organName;
-        if (descriptionText != null) descriptionText.text = od.description;
-    }
-
-    void ClearSelection()
-    {
-        ReleaseObject();
-        currentOrgan = null;
-
-        if (infoPanel != null && showPanelOnlyOnHit)
-            infoPanel.SetActive(false);
+            Rigidbody rb = selectedTransform.GetComponent<Rigidbody>();
+            if (rb != null)
+                rb.isKinematic = !s.hadRigidbody ? true : false;
+        }
 
         if (currentHighlight != null)
         {
             currentHighlight.DisableOutline();
             currentHighlight = null;
         }
+
+        currentOrgan = null;
+        selectedTransform = null;
+    }
+
+
+    void ShowOrganInfo(OrganData od)
+    {
+        if (nameText != null) nameText.text = od.organName;
+        if (descriptionText != null) descriptionText.text = od.description;
     }
 }
