@@ -3,28 +3,26 @@ using UnityEngine;
 public class btnHide : MonoBehaviour
 {
     [Header("Sistema de Esconder/Mostrar")]
-    public GameObject[] ossos;   // ← AGORA É UM ARRAY!
+    public GameObject[] ossos;
+    public GameObject lanterna;
     private bool apareceOsso = true;
 
     [Header("Player que será movido")]
     public Transform player;
 
-    [Header("Pontos de Movimento (Travel)")]
-    public Transform pontoInicial;
+    [Header("Pontos de Movimento")]
     public Transform pontoIntermediario;
-    public Transform pontoFinal;
     public float travelSpeed = 1.5f;
 
-    [Header("Teleporte ao Final")]
-    public Transform teleportFinal;
-    public Transform teleportInicial;
+    [Header("Teleportes")]
+    public Transform teleportInicio; // Ponto A
+    public Transform teleportFinal;  // Ponto C
+    public Transform teleportVolta;  // Ponto D
 
     private bool isTraveling = false;
-    private Transform currentTarget;
-    private bool travelingBack = false;
 
     //---------------------------------------
-    //  HIDE BONE (ARRAY)
+    // HIDE BONE
     //---------------------------------------
     public void HideBone()
     {
@@ -41,94 +39,80 @@ public class btnHide : MonoBehaviour
     void Update()
     {
         if (isTraveling)
-        {
             TravelStep();
-        }
     }
 
+    //---------------------------------------
+    // IDA: TP A → MOVE B → TP C
     //---------------------------------------
     public void Travel()
     {
-        if (player == null)
+        if (player == null || teleportInicio == null || pontoIntermediario == null)
         {
-            Debug.LogWarning("PLAYER não configurado no inspector!");
+            Debug.LogWarning("Configuração incompleta no Inspector!");
             return;
         }
 
-        if (pontoIntermediario == null || pontoFinal == null)
-        {
-            Debug.LogWarning("Configure os pontos no inspector!");
-            return;
-        }
+        // 1️⃣ TELEPORTA PARA O PONTO A
+        player.position = teleportInicio.position;
+        player.rotation = teleportInicio.rotation;
 
-        travelingBack = false;
-        currentTarget = pontoIntermediario;
+        // 2️⃣ INICIA MOVIMENTO ATÉ O PONTO B
         isTraveling = true;
+
+        Debug.Log("TP A realizado → iniciando viagem até B");
+
+        lanterna.SetActive(true);
     }
 
     //---------------------------------------
+    // VOLTA: TP D
+    //---------------------------------------
     public void TravelBack()
     {
-        if (player == null)
+        if (player == null || teleportVolta == null)
         {
-            Debug.LogWarning("PLAYER não configurado no inspector!");
+            Debug.LogWarning("Configure o TELEPORT DE VOLTA (D)!");
             return;
         }
 
-        if (teleportInicial == null)
-        {
-            Debug.LogWarning("Configure o TELEPORT INICIAL no inspector!");
-            return;
-        }
+        isTraveling = false;
 
-        // Teleporta imediatamente
-        player.position = teleportInicial.position;
+        player.position = teleportVolta.position;
+        player.rotation = teleportVolta.rotation;
 
-        Debug.Log("Teleportado de volta ao ponto inicial!");
+        lanterna.SetActive(false);
+        
+
+        Debug.Log("TP direto para o ponto D");
     }
 
+    //---------------------------------------
+    // MOVE ATÉ B, DEPOIS TP PARA C
     //---------------------------------------
     private void TravelStep()
     {
         player.position = Vector3.Slerp(
             player.position,
-            currentTarget.position,
+            pontoIntermediario.position,
             travelSpeed * Time.deltaTime
         );
 
-        float distancia = Vector3.Distance(player.position, currentTarget.position);
+        float distancia = Vector3.Distance(player.position, pontoIntermediario.position);
 
         if (distancia < 0.1f)
         {
-            if (!travelingBack)
-            {
-                if (currentTarget == pontoIntermediario)
-                {
-                    currentTarget = pontoFinal;
-                }
-                else
-                {
-                    isTraveling = false;
-                    Debug.Log("Chegou ao destino final!");
+            isTraveling = false;
 
-                    if (teleportFinal != null)
-                        player.position = teleportFinal.position;
-                }
-            }
-            else
-            {
-                if (currentTarget == pontoIntermediario)
-                {
-                    currentTarget = pontoInicial;
-                }
-                else
-                {
-                    isTraveling = false;
-                    Debug.Log("Voltou ao ponto inicial!");
+            Debug.Log("Chegou no ponto B");
 
-                    if (teleportInicial != null)
-                        player.position = teleportInicial.position;
-                }
+            // 3️⃣ TELEPORTA PARA O PONTO C
+            if (teleportFinal != null)
+            {
+                player.position = teleportFinal.position;
+                player.rotation = teleportFinal.rotation;
+
+                Debug.Log("TP C realizado");
             }
         }
     }
